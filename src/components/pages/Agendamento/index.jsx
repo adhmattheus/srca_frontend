@@ -35,7 +35,7 @@ export function Agendamento() {
   });
 
   const onChangeAgendamento = e => 
-    setAgendamento({...agendamento,[e.target.agendamento.atendimento] : e.target.value });
+    setAgendamento({...agendamento,[e.target.name] : e.target.value });
   
 
   const Submit = (e) => {
@@ -62,7 +62,7 @@ export function Agendamento() {
           <form onSubmit={Submit}>
             <label>
               Atendimento
-              <select value={agendamento.atendimento} onChange={onChangeAgendamento}>
+              <select name="atendimento" value={agendamento.atendimento} onChange={onChangeAgendamento}>
 
                 <option value="Matrícula">Matrícula</option>
                 <option value="Entrega de diploma">Entrega de diploma</option>
@@ -72,7 +72,7 @@ export function Agendamento() {
 
             <label>
               Setor
-              <select value={agendamento.setor} onChange={onChangeAgendamento}>
+              <select name="setor"value={agendamento.setor} onChange={onChangeAgendamento}>
 
                 <option value="Proae">Proae</option>
                 <option value="SRCA">SRCA</option>
@@ -82,7 +82,7 @@ export function Agendamento() {
 
             <label>
               Campus
-              <select value={agendamento.campus} onChange={onChangeAgendamento}>
+              <select name="campus"value={agendamento.campus} onChange={onChangeAgendamento}>
 
                 <option value="Petrolina">Petrolina</option>
                 <option value="Juazeiro">Juazeiro</option>
