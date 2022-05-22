@@ -12,6 +12,7 @@ export const Agenda = styled.div`
   select:{
     width: '100%',
     max-width: 40px,
+    align-items: 'row'
   } 
 `;
 
@@ -22,7 +23,7 @@ export const Calendario = styled.div`
 export const ContentBotao = styled.div`
 
 border: 1px solid black;
-max-width: 1120px;
+width: 250px;
 
 margin: auto;
 display: flex;

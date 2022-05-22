@@ -1,45 +1,28 @@
-import Select from 'react-select'
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 
 import { Container, Agenda, Calendario, ContentBotao } from './styles'
 import { useState } from 'react';
 
-const atendimento = [
-  { value: 'entrega de diploma', label: 'entrega de diploma' },
-  { value: 'matrícula', label: 'matrícula' },
-  { value: 'informações', label: 'informações' },
-]
-const setor = [
-  { value: 'SRCA', label: 'SRCA' },
-  { value: 'PROEN', label: 'PROEN' },
-  { value: 'PROAE', label: 'PROAE' },
-]
-const campus = [
-  { value: 'Petrolina', label: 'Petrolina' },
-  { value: 'Juazeiro', label: 'Juazeiro' },
-  { value: 'Paulo Afonso', label: 'Paulo Afonso' },
-]
-const horarios = [
-  { value: '10:00', label: '10:00' },
-  { value: '10:30', label: '10:30' },
-  { value: '18:00', label: '18:00' },
-]
-
 export function Agendamento() {
 
+  const [dataSelecionada, setdataSelecionada] = useState(new Date());
+
+
   const [agendamento, setAgendamento] = useState({
-    atendimento : '',
-    setor : '',
-    campus : ''
+    atendimento: '',
+    setor: '',
+    campus: ''
   });
 
-  const onChangeAgendamento = e => 
-    setAgendamento({...agendamento,[e.target.name] : e.target.value });
-  
+  const onChangeAgendamento = e =>
+    setAgendamento({ ...agendamento, [e.target.name]: e.target.value });
+
 
   const Submit = (e) => {
     e.preventDefault();
+
+
     console.log({ agendamento });
   }
 
@@ -61,29 +44,31 @@ export function Agendamento() {
 
           <form onSubmit={Submit}>
             <label>
-              Atendimento
+              Atendimento:
               <select name="atendimento" value={agendamento.atendimento} onChange={onChangeAgendamento}>
-
+                <option value="" disabled hidden>Selecione</option>
                 <option value="Matrícula">Matrícula</option>
                 <option value="Entrega de diploma">Entrega de diploma</option>
 
               </select>
+              <br /><br />
             </label>
 
             <label>
-              Setor
-              <select name="setor"value={agendamento.setor} onChange={onChangeAgendamento}>
-
+              Setor: 
+              <select name="setor" value={agendamento.setor} onChange={onChangeAgendamento}>
+                <option value="" disabled hidden>Selecione</option>
                 <option value="Proae">Proae</option>
                 <option value="SRCA">SRCA</option>
 
               </select>
+              <br /><br />
             </label>
 
             <label>
-              Campus
-              <select name="campus"value={agendamento.campus} onChange={onChangeAgendamento}>
-
+              Campus: 
+              <select name="campus" value={agendamento.campus} onChange={onChangeAgendamento}>
+                <option value="" disabled hidden>Selecione</option>
                 <option value="Petrolina">Petrolina</option>
                 <option value="Juazeiro">Juazeiro</option>
                 <option value="Paulo Afonso">Paulo Afonso</option>
@@ -96,7 +81,28 @@ export function Agendamento() {
         </Agenda>
 
         <Calendario>
-          <DayPicker />
+          <DayPicker
+            weekdaysShort={['D', 'S', 'T', 'Q', 'Q', 'S', 'S']}
+            fromMonth={new Date()}
+            disableDays={[{ daysOfWeek: [0, 6] }]}
+            modifiers={{
+              available: { daysOfWeek: [1, 2, 3, 4, 5] },
+            }}
+            months={['Janeiro',
+              'Fevereiro',
+              'Março',
+              'Abril',
+              'Maio',
+              'Junho',
+              'Julho',
+              'Agosto',
+              'Setembro',
+              'Outubro',
+              'Novembro',
+              'Dezembro'
+            ]}
+
+          />
         </Calendario>
 
       </Container>
