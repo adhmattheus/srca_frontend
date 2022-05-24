@@ -1,18 +1,18 @@
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
+import ptBR from 'date-fns/locale/pt-BR';
 
 import { Container, Agenda, Calendario, ContentBotao } from './styles'
 import { useState } from 'react';
 
 export function Agendamento() {
 
-  const [dataSelecionada, setdataSelecionada] = useState(new Date());
-
-
   const [agendamento, setAgendamento] = useState({
     atendimento: '',
     setor: '',
-    campus: ''
+    campus: '',
+    // data: '',
+    // horario: ''
   });
 
   const onChangeAgendamento = e =>
@@ -22,17 +22,29 @@ export function Agendamento() {
   const Submit = (e) => {
     e.preventDefault();
 
+    if (agendamento.atendimento === "") {
+      alert('Selecione o tipo de atendimento')
+      return;
+    }
+    if (agendamento.setor === "") {
+      alert('Selecione o setor')
+      return;
+    }
+    if (agendamento.campus === "") {
+      alert('Selecione o campus')
+      return;
+    }
+
+    // const response = await api.post('./CriarAgendamentoService', agendamento)
+    //   if (response.status ===  ) {
+
+    // }
+
+
 
     console.log({ agendamento });
   }
 
-  // const data = {
-  //     atendimento:
-  //     setor:
-  //     campus: 
-  //     horario:
-  //     dia:
-  // }
 
 
   return (
@@ -55,7 +67,7 @@ export function Agendamento() {
             </label>
 
             <label>
-              Setor: 
+              Setor:
               <select name="setor" value={agendamento.setor} onChange={onChangeAgendamento}>
                 <option value="" disabled hidden>Selecione</option>
                 <option value="Proae">Proae</option>
@@ -66,7 +78,7 @@ export function Agendamento() {
             </label>
 
             <label>
-              Campus: 
+              Campus:
               <select name="campus" value={agendamento.campus} onChange={onChangeAgendamento}>
                 <option value="" disabled hidden>Selecione</option>
                 <option value="Petrolina">Petrolina</option>
@@ -75,16 +87,20 @@ export function Agendamento() {
 
               </select>
             </label>
-
-
           </form>
         </Agenda>
 
         <Calendario>
           <DayPicker
+            locale={ptBR}
+
+            disableNavigation={[{ daysOfWeek: [0, 6] }]}
+
             weekdaysShort={['D', 'S', 'T', 'Q', 'Q', 'S', 'S']}
+
             fromMonth={new Date()}
             disableDays={[{ daysOfWeek: [0, 6] }]}
+
             modifiers={{
               available: { daysOfWeek: [1, 2, 3, 4, 5] },
             }}
@@ -114,17 +130,6 @@ export function Agendamento() {
         <button type="submit">Cancelar</button>
 
       </ContentBotao>
-
-
-
-
     </>
-
-
-
-
-
-
-
   )
 }

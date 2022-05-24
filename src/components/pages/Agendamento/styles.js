@@ -7,13 +7,11 @@ margin: 60px auto;
 display: flex;
 `;
 
+
+
 export const Agenda = styled.div`
   flex:1;
-  select:{
-    width: '100%',
-    max-width: 40px,
-    align-items: 'row'
-  } 
+   
 `;
 
 export const Calendario = styled.div`
