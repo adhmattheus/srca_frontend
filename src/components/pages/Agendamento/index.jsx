@@ -1,6 +1,7 @@
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import ptBR from 'date-fns/locale/pt-BR';
+import * as Yup from 'yup'
 
 import { Container, Agenda, Calendario, ContentBotao } from './styles'
 import { useState } from 'react';
@@ -18,22 +19,28 @@ export function Agendamento() {
   const onChangeAgendamento = e =>
     setAgendamento({ ...agendamento, [e.target.name]: e.target.value });
 
+  const schema = Yup.object().shape({
+    antendimento: Yup.string().required('selecione o tipo do atendimento'),
+    setor: Yup.string().required('selecione o setor'),
+    campus: Yup.string().required('selecione campus'),
+  });
+
 
   const Submit = (e) => {
     e.preventDefault();
 
-    if (agendamento.atendimento === "") {
-      alert('Selecione o tipo de atendimento')
-      return;
-    }
-    if (agendamento.setor === "") {
-      alert('Selecione o setor')
-      return;
-    }
-    if (agendamento.campus === "") {
-      alert('Selecione o campus')
-      return;
-    }
+    // if (agendamento.atendimento === "") {
+    //   alert('Selecione o tipo de atendimento')
+    //   return;
+    // }
+    // if (agendamento.setor === "") {
+    //   alert('Selecione o setor')
+    //   return;
+    // }
+    // if (agendamento.campus === "") {
+    //   alert('Selecione o campus')
+    //   return;
+    // }
 
     // const response = await api.post('./CriarAgendamentoService', agendamento)
     //   if (response.status ===  ) {
