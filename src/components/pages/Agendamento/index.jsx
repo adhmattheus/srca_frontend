@@ -4,13 +4,39 @@ import 'react-day-picker/dist/style.css';
 import ptBR from 'date-fns/locale/pt-BR';
 import api from '../../../lib/api'
 // import * as Yup from 'yup'
-
+import Modal from 'react-modal';
 import { Container, Agenda, Calendario, ContentBotao } from './styles'
 import { useCallback, useState } from 'react';
 
+
+
+
 export function Agendamento() {
 
+  const customStyles = {
+    content: {
+      width: '30%',
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+    },
+  };
+
   const { selectedDate, setSelectedDate } = useState(new Date());
+
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   // const dataSelecionada = useCallback((day: Date, modifiers: DayModifiers) => {
 
@@ -54,9 +80,9 @@ export function Agendamento() {
       return;
     }
 
-    await api.post('/CriarAgendamentoService', agendamento)
-      .then(response => setAgendamento(response.agendamento))
-      .cath(err => console.log(err));
+    // const response =await api.post('/CriarAgendamentoService', agendamento)
+    //   .then(response => setAgendamento(response.agendamento))
+    //   .cath(err => console.log(err));
 
     console.log({ agendamento });
   }
@@ -127,10 +153,23 @@ export function Agendamento() {
       <ContentBotao>
 
         <button type="submit" onClick={(Submit)}>Agendar</button>
-
         <button type="submit">Cancelar</button>
 
+        <button type="submit" onClick={(openModal)}>Modal</button>
+
       </ContentBotao>
+
+      <Modal
+        isOpen={modalIsOpen}
+
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+        
+      >
+        <h2>Agendamento realizado com sucesso!</h2>
+        <button onClick={closeModal}>close</button>
+            </Modal>
     </>
   )
 }
