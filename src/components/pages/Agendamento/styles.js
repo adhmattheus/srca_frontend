@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.main`
-border: 1px solid black;
+/* border: 1px solid black; */
 max-width: 1120px;
 margin: 60px auto;
 display: flex;
@@ -21,7 +21,7 @@ export const Calendario = styled.div`
 
 export const ContentBotao = styled.div`
 
-border: 1px solid black;
+/* border: 1px solid black; */
 width: 250px;
 
 margin: auto;

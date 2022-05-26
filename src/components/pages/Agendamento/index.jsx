@@ -1,7 +1,8 @@
 // import { format } from 'date-fns';
-import { DayPicker} from 'react-day-picker';
+import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import ptBR from 'date-fns/locale/pt-BR';
+import api from '../../../lib/api'
 // import * as Yup from 'yup'
 
 import { Container, Agenda, Calendario, ContentBotao } from './styles'
@@ -11,13 +12,13 @@ export function Agendamento() {
 
   const { selectedDate, setSelectedDate } = useState(new Date());
 
-  const dataSelecionada = useCallback((day: Date, modifiers: DayModifiers) => {
+  // const dataSelecionada = useCallback((day: Date, modifiers: DayModifiers) => {
 
-    if (modifiers.available) {
-      setSelectedDate(day);
-    }
+  //   if (modifiers.available) {
+  //     setSelectedDate(day);
+  //   }
 
-  }, []);
+  // }, []);
 
   const [agendamento, setAgendamento] = useState({
     atendimento: '',
@@ -37,28 +38,25 @@ export function Agendamento() {
   // });
 
 
-  const Submit = (e) => {
+  const Submit = async (e) => {
     e.preventDefault();
 
-    // if (agendamento.atendimento === "") {
-    //   alert('Selecione o tipo de atendimento')
-    //   return;
-    // }
-    // if (agendamento.setor === "") {
-    //   alert('Selecione o setor')
-    //   return;
-    // }
-    // if (agendamento.campus === "") {
-    //   alert('Selecione o campus')
-    //   return;
-    // }
+    if (agendamento.atendimento === "") {
+      alert('Selecione o tipo de atendimento')
+      return;
+    }
+    if (agendamento.setor === "") {
+      alert('Selecione o setor')
+      return;
+    }
+    if (agendamento.campus === "") {
+      alert('Selecione o campus')
+      return;
+    }
 
-    // const response = await api.post('./CriarAgendamentoService', agendamento)
-    //   if (response.status ===  ) {
-
-    // }
-
-
+    await api.post('/CriarAgendamentoService', agendamento)
+      .then(response => setAgendamento(response.agendamento))
+      .cath(err => console.log(err));
 
     console.log({ agendamento });
   }
@@ -113,16 +111,12 @@ export function Agendamento() {
             mode="single"
             locale={ptBR}
             fromMonth={new Date()}
-            onDayClick={dataSelecionada}
+            // onDayClick={dataSelecionada}
             modifiers={{
               available: { dayOfWeek: [1, 2, 3, 4, 5] },
               disabled: { dayOfWeek: [0, 6] }
             }}
             selected={selectedDate}
-
-
-
-
 
 
           />
