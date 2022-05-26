@@ -16,6 +16,7 @@ export const Agenda = styled.div`
 
 export const Calendario = styled.div`
   width: 330px;
+  
 `;
 
 export const ContentBotao = styled.div`
@@ -31,5 +32,6 @@ align-items: space-between;
 > button{
   margin-right: 20px; 
 }
-
 `;
+
+

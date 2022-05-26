@@ -1,12 +1,23 @@
-import { DayPicker } from 'react-day-picker';
+// import { format } from 'date-fns';
+import { DayPicker, DayModifiers } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import ptBR from 'date-fns/locale/pt-BR';
-import * as Yup from 'yup'
+// import * as Yup from 'yup'
 
 import { Container, Agenda, Calendario, ContentBotao } from './styles'
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export function Agendamento() {
+
+  const { selectedDate, setSelectedDate } = useState(new Date());
+
+  const dataSelecionada = useCallback((day: Date, modifiers: DayModifiers) => {
+
+    if (modifiers.available) {
+      setSelectedDate(day);
+    }
+
+  }, []);
 
   const [agendamento, setAgendamento] = useState({
     atendimento: '',
@@ -19,11 +30,11 @@ export function Agendamento() {
   const onChangeAgendamento = e =>
     setAgendamento({ ...agendamento, [e.target.name]: e.target.value });
 
-  const schema = Yup.object().shape({
-    antendimento: Yup.string().required('selecione o tipo do atendimento'),
-    setor: Yup.string().required('selecione o setor'),
-    campus: Yup.string().required('selecione campus'),
-  });
+  // const schema = Yup.object().shape({
+  //   antendimento: Yup.string().required('selecione o tipo do atendimento'),
+  //   setor: Yup.string().required('selecione o setor'),
+  //   campus: Yup.string().required('selecione campus'),
+  // });
 
 
   const Submit = (e) => {
@@ -99,31 +110,20 @@ export function Agendamento() {
 
         <Calendario>
           <DayPicker
+            mode="single"
             locale={ptBR}
-
-            disableNavigation={[{ daysOfWeek: [0, 6] }]}
-
-            weekdaysShort={['D', 'S', 'T', 'Q', 'Q', 'S', 'S']}
-
             fromMonth={new Date()}
-            disableDays={[{ daysOfWeek: [0, 6] }]}
-
+            onDayClick={dataSelecionada}
             modifiers={{
-              available: { daysOfWeek: [1, 2, 3, 4, 5] },
+              available: { dayOfWeek: [1, 2, 3, 4, 5] },
+              disabled: { dayOfWeek: [0, 6] }
             }}
-            months={['Janeiro',
-              'Fevereiro',
-              'Março',
-              'Abril',
-              'Maio',
-              'Junho',
-              'Julho',
-              'Agosto',
-              'Setembro',
-              'Outubro',
-              'Novembro',
-              'Dezembro'
-            ]}
+            selected={selectedDate}
+
+
+
+
+
 
           />
         </Calendario>
