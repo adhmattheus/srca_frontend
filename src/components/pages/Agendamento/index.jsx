@@ -1,5 +1,5 @@
 // import { format } from 'date-fns';
-import { DayPicker, DayModifiers } from 'react-day-picker';
+import { DayPicker} from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import ptBR from 'date-fns/locale/pt-BR';
 // import * as Yup from 'yup'
