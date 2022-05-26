@@ -10,7 +10,6 @@ import { useCallback, useState } from 'react';
 
 
 
-
 export function Agendamento() {
 
   const customStyles = {
@@ -22,6 +21,7 @@ export function Agendamento() {
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
+      alignItems: 'center'
     },
   };
 
@@ -165,11 +165,14 @@ export function Agendamento() {
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
-        
+        shouldCloseOnEsc={false}
+        shouldCloseOnOverlayClick={false}
+
       >
         <h2>Agendamento realizado com sucesso!</h2>
-        <button onClick={closeModal}>close</button>
-            </Modal>
+        <button onClick={closeModal}>Confirmar</button>
+      </Modal>
+
     </>
   )
 }
