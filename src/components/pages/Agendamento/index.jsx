@@ -1,9 +1,9 @@
-// import { format } from 'date-fns';
 import { Container, Agenda, Calendario, ContentBotao } from './styles'
 import { DayPicker } from 'react-day-picker';
 import { useState, useEffect } from 'react';
 import 'react-day-picker/dist/style.css';
 import ptBR from 'date-fns/locale/pt-BR';
+// import { format } from 'date-fns';
 import api from '../../../lib/api'
 import Modal from 'react-modal';
 
@@ -38,9 +38,12 @@ export function Agendamento() {
     atendimento: '',
     setor: '',
     campus: '',
-    // data: '',
-    // horario: ''
+    dataAgendamento: selectedDay
   });
+
+  useEffect(() => {
+    setAgendamento({ ...agendamento, dataAgendamento: selectedDay });
+  }, [selectedDay])
 
   const onChangeAgendamento = e =>
     setAgendamento({ ...agendamento, [e.target.name]: e.target.value });
