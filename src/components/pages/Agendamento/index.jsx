@@ -25,10 +25,10 @@ export function Agendamento() {
     },
   };
 
-  const { selectedDate, setSelectedDate } = useState(new Date());
+  // const [ selectedDate, setSelectedDate ] = useState(new Date());
+  const [selectedDay, setSelectedDay] = useState(new Date());
 
   const [modalIsOpen, setIsOpen] = useState(false);
-
 
   function openModal() {
     setIsOpen(true);
@@ -80,11 +80,12 @@ export function Agendamento() {
       return;
     }
 
-    // const response =await api.post('/CriarAgendamentoService', agendamento)
+    // await api.post('/CriarAgendamentoService', agendamento)
     //   .then(response => setAgendamento(response.agendamento))
     //   .cath(err => console.log(err));
 
     console.log({ agendamento });
+    setIsOpen(true);
   }
 
 
@@ -142,7 +143,11 @@ export function Agendamento() {
               available: { dayOfWeek: [1, 2, 3, 4, 5] },
               disabled: { dayOfWeek: [0, 6] }
             }}
-            selected={selectedDate}
+          
+            selected={selectedDay}
+            onSelect={setSelectedDay}
+
+            
 
 
           />
@@ -155,19 +160,17 @@ export function Agendamento() {
         <button type="submit" onClick={(Submit)}>Agendar</button>
         <button type="submit">Cancelar</button>
 
-        <button type="submit" onClick={(openModal)}>Modal</button>
+        {/* <button type="submit" onClick={(openModal)}>Modal</button> */}
 
       </ContentBotao>
 
       <Modal
         isOpen={modalIsOpen}
-
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Example Modal"
         shouldCloseOnEsc={false}
         shouldCloseOnOverlayClick={false}
-
+        ariaHideApp={false}
       >
         <h2>Agendamento realizado com sucesso!</h2>
         <button onClick={closeModal}>Confirmar</button>
