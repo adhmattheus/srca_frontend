@@ -1,14 +1,11 @@
 // import { format } from 'date-fns';
+import { Container, Agenda, Calendario, ContentBotao } from './styles'
 import { DayPicker } from 'react-day-picker';
+import { useState, useEffect } from 'react';
 import 'react-day-picker/dist/style.css';
 import ptBR from 'date-fns/locale/pt-BR';
 import api from '../../../lib/api'
-// import * as Yup from 'yup'
 import Modal from 'react-modal';
-import { Container, Agenda, Calendario, ContentBotao } from './styles'
-import { useCallback, useState } from 'react';
-
-
 
 export function Agendamento() {
 
@@ -25,7 +22,6 @@ export function Agendamento() {
     },
   };
 
-  // const [ selectedDate, setSelectedDate ] = useState(new Date());
   const [selectedDay, setSelectedDay] = useState(new Date());
 
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -37,14 +33,6 @@ export function Agendamento() {
   function closeModal() {
     setIsOpen(false);
   }
-
-  // const dataSelecionada = useCallback((day: Date, modifiers: DayModifiers) => {
-
-  //   if (modifiers.available) {
-  //     setSelectedDate(day);
-  //   }
-
-  // }, []);
 
   const [agendamento, setAgendamento] = useState({
     atendimento: '',
@@ -63,7 +51,6 @@ export function Agendamento() {
   //   campus: Yup.string().required('selecione campus'),
   // });
 
-
   const Submit = async (e) => {
     e.preventDefault();
 
@@ -80,15 +67,17 @@ export function Agendamento() {
       return;
     }
 
-    // await api.post('/CriarAgendamentoService', agendamento)
-    //   .then(response => setAgendamento(response.agendamento))
-    //   .cath(err => console.log(err));
-
-    console.log({ agendamento });
-    setIsOpen(true);
+    await api.post('./agendamentos', {
+      estudanteId: '',
+      campus: agendamento.campus,
+      setor: agendamento.categoria,
+      categoria: agendamento.atendimento,
+      dataAgendamento: selectedDay
+    })
+      .then(response => {
+        console.log(response); setIsOpen(true);
+      })
   }
-
-
 
   return (
     <>
@@ -143,12 +132,12 @@ export function Agendamento() {
               available: { dayOfWeek: [1, 2, 3, 4, 5] },
               disabled: { dayOfWeek: [0, 6] }
             }}
-          
+
             selected={selectedDay}
             onSelect={setSelectedDay}
-            
 
-            
+
+
 
 
           />
