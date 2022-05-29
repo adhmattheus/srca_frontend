@@ -23,11 +23,32 @@ export function Agendamento() {
     },
   };
 
+
+
   const [selectedDay, setSelectedDay] = useState(new Date());
 
-  const data = selectedDay;
-  const dataformatada = format(data, "yyyy-MM-dd' 'hh:mm:ss");
- 
+
+
+  const [agendamento, setAgendamento] = useState({
+    atendimento: '',
+    setor: '',
+    campus: '',
+    dataAgendamento: selectedDay,
+    horario: ''
+  });
+
+  const data = format(selectedDay, "yyyy-MM-dd");
+  const hora = agendamento.horario;
+
+  const agendamentoData = { data, hora }
+
+
+
+
+
+
+
+
 
 
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -42,19 +63,12 @@ export function Agendamento() {
 
   // const dataAgendamento = 
 
-  const [agendamento, setAgendamento] = useState({
-    atendimento: '',
-    setor: '',
-    campus: '',
-    dataAgendamento: selectedDay ,
-    horario: ''
-    
-  });
+
 
   useEffect(() => {
     setAgendamento({ ...agendamento, dataAgendamento: selectedDay }
-      
-      );
+
+    );
   }, [selectedDay])
 
   const onChangeAgendamento = e =>
@@ -96,9 +110,9 @@ export function Agendamento() {
     //   })
     //   .catch(console.log('erro'))
 
-    console.log(agendamento)
-   
- 
+    console.log(agendamentoData)
+
+
   }
 
   return (
