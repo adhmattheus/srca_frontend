@@ -3,7 +3,8 @@ import { DayPicker } from 'react-day-picker';
 import { useState, useEffect } from 'react';
 import 'react-day-picker/dist/style.css';
 import ptBR from 'date-fns/locale/pt-BR';
-// import { format } from 'date-fns';
+import { format, } from 'date-fns';
+import { zonedTimeToUtc } from 'date-fns-tz';
 import api from '../../../lib/api'
 import Modal from 'react-modal';
 
@@ -24,25 +25,36 @@ export function Agendamento() {
 
   const [selectedDay, setSelectedDay] = useState(new Date());
 
+  const data = selectedDay;
+  const dataformatada = format(data, "yyyy-MM-dd' 'hh:mm:ss");
+ 
+
+
   const [modalIsOpen, setIsOpen] = useState(false);
 
-  function openModal() {
-    setIsOpen(true);
-  }
+  // function openModal() {
+  //   setIsOpen(true);
+  // }
 
   function closeModal() {
     setIsOpen(false);
   }
 
+  // const dataAgendamento = 
+
   const [agendamento, setAgendamento] = useState({
     atendimento: '',
     setor: '',
     campus: '',
-    dataAgendamento: selectedDay
+    dataAgendamento: selectedDay ,
+    horario: ''
+    
   });
 
   useEffect(() => {
-    setAgendamento({ ...agendamento, dataAgendamento: selectedDay });
+    setAgendamento({ ...agendamento, dataAgendamento: selectedDay }
+      
+      );
   }, [selectedDay])
 
   const onChangeAgendamento = e =>
@@ -54,32 +66,39 @@ export function Agendamento() {
   //   campus: Yup.string().required('selecione campus'),
   // });
 
+
+
   const Submit = async (e) => {
     e.preventDefault();
 
-    if (agendamento.atendimento === "") {
-      alert('Selecione o tipo de atendimento')
-      return;
-    }
-    if (agendamento.setor === "") {
-      alert('Selecione o setor')
-      return;
-    }
-    if (agendamento.campus === "") {
-      alert('Selecione o campus')
-      return;
-    }
+    // if (agendamento.atendimento === "") {
+    //   alert('Selecione o tipo de atendimento')
+    //   return;
+    // }
+    // if (agendamento.setor === "") {
+    //   alert('Selecione o setor')
+    //   return;
+    // }
+    // if (agendamento.campus === "") {
+    //   alert('Selecione o campus')
+    //   return;
+    // }
 
-    await api.post('./agendamentos', {
-      estudanteId: '',
-      campus: agendamento.campus,
-      setor: agendamento.categoria,
-      categoria: agendamento.atendimento,
-      dataAgendamento: selectedDay
-    })
-      .then(response => {
-        console.log(response); setIsOpen(true);
-      })
+    // await api.post('./agendamentos', {
+    //   estudanteId: '97e67e57-e3fd-41c1-a918-df7acdce9ce3',
+    //   campus: agendamento.campus,
+    //   setor: agendamento.setor,
+    //   categoria: agendamento.atendimento,
+    //   dataAgendamento: selectedDay
+    // })
+    //   .then(response => {
+    //     console.log(response); setIsOpen(true);
+    //   })
+    //   .catch(console.log('erro'))
+
+    console.log(agendamento)
+   
+ 
   }
 
   return (
@@ -122,6 +141,24 @@ export function Agendamento() {
 
               </select>
             </label>
+            <br /><br />
+            <label>
+
+              Horário:
+              <select name="horario" value={agendamento.horario} onChange={onChangeAgendamento}>
+                <option value="" disabled hidden>Selecione</option>
+                <option value="14:00">14:00</option>
+                <option value="14:20">14:20</option>
+                <option value="14:40">14:40</option>
+                <option value="15:00">15:00</option>
+                <option value="15:20">15:20</option>
+                <option value="15:40">15:40</option>
+                <option value="16:00">16:00</option>
+                <option value="16:20">16:20</option>
+                <option value="16:40">16:40</option>
+
+              </select>
+            </label>
           </form>
         </Agenda>
 
@@ -133,7 +170,7 @@ export function Agendamento() {
             // onDayClick={dataSelecionada}
             modifiers={{
               available: { dayOfWeek: [1, 2, 3, 4, 5] },
-              disabled: { dayOfWeek: [0, 6] }
+              disabled: { dayOfWeek: [6] }
             }}
 
             selected={selectedDay}
