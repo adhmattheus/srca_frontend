@@ -1,10 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Container, Agenda, Calendario, ContentBotao } from './styles'
 import { DayPicker } from 'react-day-picker';
 import { useState, useEffect } from 'react';
 import 'react-day-picker/dist/style.css';
 import ptBR from 'date-fns/locale/pt-BR';
 import { format, } from 'date-fns';
-import { zonedTimeToUtc } from 'date-fns-tz';
 import api from '../../../lib/api'
 import Modal from 'react-modal';
 
@@ -23,11 +23,7 @@ export function Agendamento() {
     },
   };
 
-
-
   const [selectedDay, setSelectedDay] = useState(new Date());
-
-
 
   const [agendamento, setAgendamento] = useState({
     atendimento: '',
@@ -36,20 +32,6 @@ export function Agendamento() {
     dataAgendamento: selectedDay,
     horario: ''
   });
-
-  const data = format(selectedDay, "yyyy-MM-dd");
-  const hora = agendamento.horario;
-
-  const agendamentoData = { data, hora }
-
-
-
-
-
-
-
-
-
 
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -61,15 +43,17 @@ export function Agendamento() {
     setIsOpen(false);
   }
 
-  // const dataAgendamento = 
-
-
-
   useEffect(() => {
-    setAgendamento({ ...agendamento, dataAgendamento: selectedDay }
 
-    );
-  }, [selectedDay])
+    const data = format(selectedDay, "yyyy-MM-dd");
+    const hora = agendamento.horario;
+    const agendamentoData = `${data}  ${hora}`;
+
+    setAgendamento({
+      ...agendamento,
+      dataAgendamento: format(new Date(agendamentoData), 'yyyy-MM-dd HH:mm:ss').toString(),
+    });
+  }, [selectedDay, agendamento.horario])
 
   const onChangeAgendamento = e =>
     setAgendamento({ ...agendamento, [e.target.name]: e.target.value });
@@ -80,39 +64,36 @@ export function Agendamento() {
   //   campus: Yup.string().required('selecione campus'),
   // });
 
-
-
   const Submit = async (e) => {
     e.preventDefault();
 
-    // if (agendamento.atendimento === "") {
-    //   alert('Selecione o tipo de atendimento')
-    //   return;
-    // }
-    // if (agendamento.setor === "") {
-    //   alert('Selecione o setor')
-    //   return;
-    // }
-    // if (agendamento.campus === "") {
-    //   alert('Selecione o campus')
-    //   return;
-    // }
-
-    // await api.post('./agendamentos', {
-    //   estudanteId: '97e67e57-e3fd-41c1-a918-df7acdce9ce3',
-    //   campus: agendamento.campus,
-    //   setor: agendamento.setor,
-    //   categoria: agendamento.atendimento,
-    //   dataAgendamento: selectedDay
-    // })
-    //   .then(response => {
-    //     console.log(response); setIsOpen(true);
-    //   })
-    //   .catch(console.log('erro'))
-
-    console.log(agendamentoData)
-
-
+    if (agendamento.atendimento === "") {
+      alert('Selecione o tipo de atendimento')
+      return;
+    }
+    if (agendamento.setor === "") {
+      alert('Selecione o setor')
+      return;
+    }
+    if (agendamento.campus === "") {
+      alert('Selecione o campus')
+      return;
+    }
+    if (agendamento.campus === "") {
+      alert('Selecione o horário')
+      return;
+    }
+    await api.post('/agendamentos', {
+      estudanteId: '97e67e57-e3fd-41c1-a918-df7acdce9ce3',
+      campus: agendamento.campus,
+      setor: agendamento.setor,
+      categoria: agendamento.atendimento,
+      dataAgendamento: agendamento.dataAgendamento
+    })
+      .then(response => {
+        console.log(response); setIsOpen(true);
+      })
+      .catch(console.log('erro'))
   }
 
   return (
@@ -184,16 +165,10 @@ export function Agendamento() {
             // onDayClick={dataSelecionada}
             modifiers={{
               available: { dayOfWeek: [1, 2, 3, 4, 5] },
-              disabled: { dayOfWeek: [6] }
+              disabled: { dayOfWeek: [0, 6] }
             }}
-
             selected={selectedDay}
             onSelect={setSelectedDay}
-
-
-
-
-
           />
         </Calendario>
 
