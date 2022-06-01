@@ -5,7 +5,7 @@ import { ListaAgendamentos } from './components/pages/ListaAgendamentos';
 function App() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <ListaAgendamentos />
     </>
 
