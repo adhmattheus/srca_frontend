@@ -45,5 +45,4 @@ export function ListaAgendamentos() {
         </table>
     </Tabela >
   )
-
 }
