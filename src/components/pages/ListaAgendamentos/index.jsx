@@ -1,7 +1,8 @@
 import { Tabela } from './styles'
-import Agendamento from '../Agendamento/index'
+
 
 export function ListaAgendamentos() {
+
   return (
 
     <Tabela>
@@ -24,6 +25,7 @@ export function ListaAgendamentos() {
           <td>2022-06-15 15:00</td>
           <td>Não atendido</td>
         </tr>
+
         <tr>
           <td>2</td>
           <td>Sebastião Casca de pinha</td>
@@ -43,6 +45,8 @@ export function ListaAgendamentos() {
           <td>Não atendido</td>
         </tr>
         </table>
+
+        
     </Tabela >
   )
 }
