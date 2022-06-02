@@ -20,43 +20,36 @@ export function ListaAgendamentos() {
     getAgendamentos();
   }, []);
 
-  const use = listAgendamentos.agendamentos?.map((agendamento, data) => {
+  const tabelaAgendamentos = listAgendamentos.agendamentos?.map((agendamento, data) => {
     return (
-      <div key={data}>
-        <p>{agendamento.categoria}</p>
-        <p>{agendamento.campus}</p>
+      <div>
+        <Tabela>
+          <table>
+
+            <tr>
+              {/* <th>Id</th>
+              <th>Nome</th> */}
+              <th>Campus</th>
+              <th>Setor</th>
+              <th>Categoria</th>
+              <th>Data</th>
+              <th>Status</th>
+            </tr>
+            <tr>
+              <td>{agendamento.campus}</td>
+              <td>{agendamento.categoria}</td>
+              <td>SRCA</td>
+              <td>2022-06-15 15:00</td>
+              <td>Não atendido</td>
+            </tr>
+          </table>
+        </Tabela>
       </div>
     )
   })
 
   return (
-    use
-    //   <Tabela>
-    //   <table>
-
-    //     <tr>
-    //       <th>Id</th>
-    //       <th>Nome</th>
-    //       <th>Campus</th>
-    //       <th>Setor</th>
-    //       <th>Categoria</th>
-    //       <th>Agendamento</th>
-    //       <th>Status</th>
-    //     </tr>
-    //     <tr>
-    //       <td>1</td>
-    //       <td>Mattheus Adhonnay</td>
-    //       <td>Petrolina</td>
-    //       <td>SRCA</td>
-    //       <td>Matrícula</td>
-    //       <td>2022-06-15 15:00</td>
-    //       <td>Não atendido</td>
-    //     </tr>
-    //   </table>
-    // </Tabela>
-
-
-
+    tabelaAgendamentos
   )
 }
 
