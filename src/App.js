@@ -1,11 +1,12 @@
-import { Agendamento } from './components/pages/Agendamento';
+// import { Agendamento } from './components/pages/Agendamento';
 import { Header } from './components/Header';
+import { ListaAgendamentos } from './components/pages/ListaAgendamentos';
 
 function App() {
   return (
     <>
-      <Header />
-      <Agendamento />
+      {/* <Header /> */}
+      <ListaAgendamentos />
     </>
 
   );
