@@ -8,11 +8,10 @@ export function ListaAgendamentos() {
 
   useEffect(() => {
     async function getAgendamentos() {
-      const response = await api.get('https://jsonplaceholder.typicode.com/users')
+      await api.get('/agendamentos')
         .then(response => {
           setListAgendamentos(response.data)
           console.log(response.data)
-
         })
         .catch(err => {
           console.log(err)
@@ -21,17 +20,17 @@ export function ListaAgendamentos() {
     getAgendamentos();
   }, []);
 
-  // const  = listAgendamentos.map((agendamento) => {
-  //   return
-  //   <div>
-  //     <p>{agendamento.id}</p>
-  //     <p>{user.name}</p>
-  //   </div>
-  // })
+  const use = listAgendamentos.agendamentos?.map((agendamento, data) => {
+    return (
+      <div key={data}>
+        <p>{agendamento.categoria}</p>
+        <p>{agendamento.campus}</p>
+      </div>
+    )
+  })
 
   return (
-<p>ok</p>
-    
+    use
     //   <Tabela>
     //   <table>
 
