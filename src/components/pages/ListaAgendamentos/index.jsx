@@ -8,7 +8,7 @@ export function ListaAgendamentos() {
 
   useEffect(() => {
     async function getAgendamentos() {
-      const response = await api.get('')
+      await api.get('/agendamentos')
         .then(response => {
           setListAgendamentos(response.data)
           console.log(response.data)
@@ -20,55 +20,36 @@ export function ListaAgendamentos() {
     getAgendamentos();
   }, []);
 
+  const tabelaAgendamentos = listAgendamentos.agendamentos?.map((agendamento, data) => {
+    return (
+      <div>
+        <Tabela>
+          <table>
+
+            <tr>
+              {/* <th>Id</th>
+              <th>Nome</th> */}
+              <th>Campus</th>
+              <th>Setor</th>
+              <th>Categoria</th>
+              <th>Data</th>
+              <th>Status</th>
+            </tr>
+            <tr>
+              <td>{agendamento.campus}</td>
+              <td>{agendamento.categoria}</td>
+              <td>SRCA</td>
+              <td>2022-06-15 15:00</td>
+              <td>Não atendido</td>
+            </tr>
+          </table>
+        </Tabela>
+      </div>
+    )
+  })
+
   return (
-    <div>
-      ok
-    </div>
-
-    // <Tabela>
-    //   <table>
-
-    //     <tr>
-    //       <th>Id</th>
-    //       <th>Nome</th>
-    //       <th>{}</th>
-    //       <th>Setor</th>
-    //       <th>Categoria</th>
-    //       <th>Agendamento</th>
-    //       <th>Status</th>
-    //     </tr>
-    //     <tr>
-    //       <td>1</td>
-    //       <td>Mattheus Adhonnay</td>
-    //       <td>Petrolina</td>
-    //       <td>SRCA</td>
-    //       <td>Matrícula</td>
-    //       <td>2022-06-15 15:00</td>
-    //       <td>Não atendido</td>
-    //     </tr>
-
-    //     <tr>
-    //       <td>2</td>
-    //       <td>Sebastião Casca de pinha</td>
-    //       <td>Paulo Afonso</td>
-    //       <td>PROAE</td>
-    //       <td>Entrega de documentos</td>
-    //       <td>2022-08-23 15:30</td>
-    //       <td>Atendido</td>
-    //     </tr>
-    //     <tr>
-    //       <td>3</td>
-    //       <td>Ledarno Chuponis</td>
-    //       <td>Juazeiro</td>
-    //       <td>SRCA</td>
-    //       <td>Entrega de diploma</td>
-    //       <td>2022-06-05 12:00</td>
-    //       <td>Não atendido</td>
-    //     </tr>
-    //   </table>
-
-
-    // </Tabela >
+    tabelaAgendamentos
   )
 }
 
