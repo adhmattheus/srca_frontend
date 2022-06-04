@@ -1,4 +1,4 @@
-import { Tabela } from './styles'
+import { Tabela, Container } from './styles'
 import { useEffect, useState } from 'react'
 import api from '../../../lib/api'
 
@@ -20,42 +20,38 @@ export function ListaAgendamentos() {
     getAgendamentos();
   }, []);
 
-  const tabelaAgendamentos = listAgendamentos.agendamentos?.map((agendamento, data) => {
-    return (
-      <div>
+  return (
+    <>
+      <Container>
+        <h2>Lista de Agendamentos</h2>
         <Tabela>
           <table>
+            <thead>
+              <tr>
+                <th>Campus</th>
+                <th>Setor</th>
+                <th>Atendimento</th>
+                <th>Data</th>
+                <th>Status</th>
+              </tr>
+            </thead>
 
-            <tr>
-              {/* <th>Id</th>
-              <th>Nome</th> */}
-              <th>Campus</th>
-              <th>Setor</th>
-              <th>Categoria</th>
-              <th>Data</th>
-              <th>Status</th>
-            </tr>
-            <tr>
-              <td>{agendamento.campus}</td>
-              <td>{agendamento.categoria}</td>
-              <td>SRCA</td>
-              <td>2022-06-15 15:00</td>
-              <td>Não atendido</td>
-            </tr>
+            {listAgendamentos.agendamentos?.map((agendamento, data) => {
+              return (
+
+                <tr key={data}>
+                  <td>{agendamento.campus}</td>
+                  <td>{agendamento.setor}</td>
+                  <td>{agendamento.categoria}</td>
+                  <td>{agendamento.dataAgendamento}</td>
+                  <td>{agendamento.statusAgendamento}</td>
+                </tr>
+              )
+            })}
+
           </table>
         </Tabela>
-      </div>
-    )
-  })
-
-  return (
-    tabelaAgendamentos
-  )
+      </Container>
+    </>
+  );
 }
-
-
-
-
-
-
-
