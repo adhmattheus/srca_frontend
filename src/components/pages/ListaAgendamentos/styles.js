@@ -9,11 +9,10 @@ export const Container = styled.main`
 `;
 
 export const Tabela = styled.table`
- table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 100%;
-}
+  width: 50%;
+
 
 thead tr{
   background-color: lightblue;
@@ -26,7 +25,7 @@ th,td {
   text-align: center;
 }
 
-tr:nth-child(even) {
+tbody tr:nth-child(even) {
   background-color: #dddddd;
 }
 

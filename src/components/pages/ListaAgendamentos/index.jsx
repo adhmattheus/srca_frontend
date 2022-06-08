@@ -1,7 +1,7 @@
+import { zonedTimeToUtc } from 'date-fns-tz';
 import { Tabela, Container } from './styles'
 import { useEffect, useState } from 'react'
 import api from '../../../lib/api'
-import { zonedTimeToUtc } from 'date-fns-tz';
 
 export function ListaAgendamentos() {
 
@@ -12,8 +12,6 @@ export function ListaAgendamentos() {
       await api.get('/agendamentos')
         .then(response => {
           setListAgendamentos(response.data)
-          // console.log(response.data)
-         
         })
         .catch(err => {
           console.log(err)
@@ -22,42 +20,42 @@ export function ListaAgendamentos() {
     getAgendamentos();
   }, []);
 
-  // console.log(listAgendamentos)
-  
   return (
     <>
       <Container>
 
-        
-
         <h2>Lista de Agendamentos</h2>
+
         <Tabela>
-          <table>
-            <thead>
-              <tr>
-                <th>Campus</th>
-                <th>Setor</th>
-                <th>Atendimento</th>
-                <th>Data</th>
-                <th>Status</th>
-              </tr>
-            </thead>
+
+          <thead>
+            <tr>
+              <th>Campus</th>
+              <th>Setor</th>
+              <th>Atendimento</th>
+              <th>Data</th>
+              <th>Horário</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
 
             {listAgendamentos.agendamentos?.map((agendamento, data) => {
+
               return (
 
                 <tr key={data}>
                   <td>{agendamento.campus}</td>
                   <td>{agendamento.setor}</td>
                   <td>{agendamento.categoria}</td>
-                  <td>{(zonedTimeToUtc(agendamento.dataAgendamento, 'America/Sao_Paulo'))}</td>
-                  {/* <td>{agendamento.dataAgendamento}</td> */}
+                  <td>{(zonedTimeToUtc(agendamento.dataAgendamento, 'America/Sao_Paulo')).toLocaleDateString()}</td>
+                  <td>{(zonedTimeToUtc(agendamento.dataAgendamento, 'America/Sao_Paulo')).toLocaleTimeString()}</td>
                   <td>{agendamento.statusAgendamento}</td>
                 </tr>
+
               )
             })}
-
-          </table>
+          </tbody>
         </Tabela>
       </Container>
     </>
