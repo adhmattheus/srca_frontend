@@ -1,6 +1,6 @@
 // import { Agendamento } from './components/pages/Agendamento';
 import { Header } from './components/Header';
-import { ListaAgendamentos } from './components/pages/ListaAgendamentos';
+import { ListaAgendamentos } from './pages/ListaAgendamentos';
 
 function App() {
   return (

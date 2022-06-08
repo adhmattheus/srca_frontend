@@ -1,7 +1,7 @@
 import { zonedTimeToUtc } from 'date-fns-tz';
 import { Tabela, Container } from './styles'
 import { useEffect, useState } from 'react'
-import api from '../../../lib/api'
+import api from '../../lib/api'
 
 export function ListaAgendamentos() {
 
@@ -11,13 +11,20 @@ export function ListaAgendamentos() {
     async function getAgendamentos() {
       await api.get('/agendamentos')
         .then(response => {
-          setListAgendamentos(response.data)
+
+          const dados = response.data.agendamentos.map(agendamento => ({
+            ...agendamento,
+            dataAgendamento: (zonedTimeToUtc(agendamento.dataAgendamento, 'America/Sao_Paulo')).toLocaleDateString(),
+            horaAgendamento: (zonedTimeToUtc(agendamento.dataAgendamento, 'America/Sao_Paulo')).toLocaleTimeString()
+          }));
+
+          setListAgendamentos(dados)
         })
         .catch(err => {
           console.log(err)
         })
     };
-    getAgendamentos();
+      getAgendamentos();
   }, []);
 
   return (
@@ -40,7 +47,7 @@ export function ListaAgendamentos() {
           </thead>
           <tbody>
 
-            {listAgendamentos.agendamentos?.map((agendamento, data) => {
+            {listAgendamentos.map((agendamento, data) => {
 
               return (
 
@@ -48,8 +55,8 @@ export function ListaAgendamentos() {
                   <td>{agendamento.campus}</td>
                   <td>{agendamento.setor}</td>
                   <td>{agendamento.categoria}</td>
-                  <td>{(zonedTimeToUtc(agendamento.dataAgendamento, 'America/Sao_Paulo')).toLocaleDateString()}</td>
-                  <td>{(zonedTimeToUtc(agendamento.dataAgendamento, 'America/Sao_Paulo')).toLocaleTimeString()}</td>
+                  <td>{agendamento.dataAgendamento}</td>
+                  <td>{agendamento.horaAgendamento}</td>
                   <td>{agendamento.statusAgendamento}</td>
                 </tr>
 

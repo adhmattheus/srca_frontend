@@ -11,7 +11,7 @@ export const Container = styled.main`
 export const Tabela = styled.table`
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 50%;
+  width: 80%;
 
 
 thead tr{
@@ -28,5 +28,4 @@ th,td {
 tbody tr:nth-child(even) {
   background-color: #dddddd;
 }
-
 `;
