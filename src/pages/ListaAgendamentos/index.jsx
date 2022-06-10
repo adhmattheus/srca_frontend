@@ -5,6 +5,7 @@ import api from '../../lib/api'
 
 import ptBR from 'date-fns/locale/pt-BR';
 import { DayPicker } from 'react-day-picker';
+import 'react-day-picker/dist/style.css';
 import DatePicker from "react-datepicker";
 
 export function ListaAgendamentos() {
@@ -34,28 +35,26 @@ export function ListaAgendamentos() {
 
   return (
     <>
-    
-      <Calendario>
-        <DayPicker
-          mode="single"
-          locale={ptBR}
-          fromMonth={new Date()}
-          // onDayClick={dataSelecionada}
-          modifiers={{
-            available: { dayOfWeek: [1, 2, 3, 4, 5] },
-            disabled: { dayOfWeek: [0, 6] }
-          }}
-          selected={selectedDay}
-          onSelect={setSelectedDay}
-        />
-      </Calendario>
-
-
 
 
       <Container>
+
         <h2>Lista de Agendamentos</h2>
 
+        <Calendario>
+          <DayPicker
+            mode="single"
+            locale={ptBR}
+            fromMonth={new Date()}
+            // onDayClick={dataSelecionada}
+            modifiers={{
+              available: { dayOfWeek: [1, 2, 3, 4, 5] },
+              disabled: { dayOfWeek: [0, 6] }
+            }}
+            selected={selectedDay}
+            onSelect={setSelectedDay}
+          />
+        </Calendario>
 
         <Tabela>
 

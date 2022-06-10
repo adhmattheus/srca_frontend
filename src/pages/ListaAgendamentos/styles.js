@@ -30,7 +30,15 @@ tbody tr:nth-child(even) {
 }
 `;
 
-export const Calendario = styled.div`
+export const Calendario = styled.aside`
   width: 330px;
   
+  .Daypicker{
+    background: lightblue;
+    border-radius: 10px;
+  }
+
+  .DayPicker-Day--disabled{
+    color: red;
+  }
 `;
