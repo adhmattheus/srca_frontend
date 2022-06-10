@@ -29,3 +29,8 @@ tbody tr:nth-child(even) {
   background-color: #dddddd;
 }
 `;
+
+export const Calendario = styled.div`
+  width: 330px;
+  
+`;

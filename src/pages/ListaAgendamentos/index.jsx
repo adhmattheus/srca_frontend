@@ -1,9 +1,14 @@
 import { zonedTimeToUtc } from 'date-fns-tz';
-import { Tabela, Container } from './styles'
+import { Tabela, Container, Calendario } from './styles'
 import { useEffect, useState } from 'react'
 import api from '../../lib/api'
 
+import ptBR from 'date-fns/locale/pt-BR';
+import { DayPicker } from 'react-day-picker';
+import DatePicker from "react-datepicker";
+
 export function ListaAgendamentos() {
+  const [selectedDay, setSelectedDay] = useState(new Date());
 
   const [listAgendamentos, setListAgendamentos] = useState([]);
 
@@ -24,14 +29,33 @@ export function ListaAgendamentos() {
           console.log(err)
         })
     };
-      getAgendamentos();
+    getAgendamentos();
   }, []);
 
   return (
     <>
-      <Container>
+    
+      <Calendario>
+        <DayPicker
+          mode="single"
+          locale={ptBR}
+          fromMonth={new Date()}
+          // onDayClick={dataSelecionada}
+          modifiers={{
+            available: { dayOfWeek: [1, 2, 3, 4, 5] },
+            disabled: { dayOfWeek: [0, 6] }
+          }}
+          selected={selectedDay}
+          onSelect={setSelectedDay}
+        />
+      </Calendario>
 
+
+
+
+      <Container>
         <h2>Lista de Agendamentos</h2>
+
 
         <Tabela>
 
@@ -65,6 +89,8 @@ export function ListaAgendamentos() {
           </tbody>
         </Tabela>
       </Container>
+
     </>
+
   );
 }
