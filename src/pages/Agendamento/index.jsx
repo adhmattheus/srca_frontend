@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import 'react-day-picker/dist/style.css';
 import ptBR from 'date-fns/locale/pt-BR';
 import { format, } from 'date-fns';
-import api from '../../../lib/api'
+import api from '../../lib/api'
 import Modal from 'react-modal';
 
 export function Agendamento() {
