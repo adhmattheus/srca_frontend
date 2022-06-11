@@ -1,21 +1,31 @@
 import { zonedTimeToUtc } from 'date-fns-tz';
 import { Tabela, Container, Calendario } from './styles'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import api from '../../lib/api'
-
 import ptBR from 'date-fns/locale/pt-BR';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
-import DatePicker from "react-datepicker";
 
 export function ListaAgendamentos() {
-  const [selectedDay, setSelectedDay] = useState(new Date());
 
+  const [selectedDay, setSelectedDay] = useState(new Date());
   const [listAgendamentos, setListAgendamentos] = useState([]);
+
+
+  const handleDateChange = useCallback((dataAgendamento) => {
+    setSelectedDay(dataAgendamento)
+  }, [])
 
   useEffect(() => {
     async function getAgendamentos() {
-      await api.get('/agendamentos')
+      await api.get('/agendamentos', {
+        params: {
+          
+          dataAgendamento: selectedDay
+        },
+
+      })
+
         .then(response => {
 
           const dados = response.data.agendamentos.map(agendamento => ({
@@ -23,7 +33,6 @@ export function ListaAgendamentos() {
             dataAgendamento: (zonedTimeToUtc(agendamento.dataAgendamento, 'America/Sao_Paulo')).toLocaleDateString(),
             horaAgendamento: (zonedTimeToUtc(agendamento.dataAgendamento, 'America/Sao_Paulo')).toLocaleTimeString()
           }));
-
           setListAgendamentos(dados)
         })
         .catch(err => {
@@ -31,11 +40,11 @@ export function ListaAgendamentos() {
         })
     };
     getAgendamentos();
-  }, []);
+  }, [selectedDay]);
 
+ 
   return (
     <>
-
 
       <Container>
 
@@ -45,14 +54,16 @@ export function ListaAgendamentos() {
           <DayPicker
             mode="single"
             locale={ptBR}
-            fromMonth={new Date()}
-            // onDayClick={dataSelecionada}
             modifiers={{
               available: { dayOfWeek: [1, 2, 3, 4, 5] },
               disabled: { dayOfWeek: [0, 6] }
             }}
+
             selected={selectedDay}
             onSelect={setSelectedDay}
+            onDayClick={handleDateChange}
+
+
           />
         </Calendario>
 
