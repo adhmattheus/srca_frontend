@@ -53,14 +53,13 @@ export function ListaAgendamentos() {
               available: { dayOfWeek: [1, 2, 3, 4, 5] },
               disabled: { dayOfWeek: [0, 6] }
             }}
-
             selected={selectedDay}
             onSelect={setSelectedDay}
             onDayClick={handleDateChange}
-
-
           />
         </Calendario>
+
+        {listAgendamentos.length === 0 && <h2>sem agendamentos para este dia</h2>}
 
         <Tabela>
 
