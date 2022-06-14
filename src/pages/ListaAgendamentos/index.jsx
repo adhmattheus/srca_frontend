@@ -5,6 +5,7 @@ import api from '../../lib/api'
 import ptBR from 'date-fns/locale/pt-BR';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
+import { format } from 'date-fns';
 
 export function ListaAgendamentos() {
 
@@ -18,13 +19,7 @@ export function ListaAgendamentos() {
 
   useEffect(() => {
     async function getAgendamentos() {
-      await api.get('/agendamentos', {
-        params: {
-          
-          dataAgendamento: selectedDay
-        },
-
-      })
+      await api.get(`/agendamentos/${format(selectedDay, 'yyyy-MM-dd')}`)
 
         .then(response => {
 
@@ -42,7 +37,7 @@ export function ListaAgendamentos() {
     getAgendamentos();
   }, [selectedDay]);
 
- 
+
   return (
     <>
 
