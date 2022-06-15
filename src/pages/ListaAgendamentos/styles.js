@@ -42,3 +42,16 @@ export const Calendario = styled.aside`
     color: red;
   }
 `;
+
+export const ContainerFiltros = styled.main`
+  border: 1px solid lightblue;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content:space-evenly ;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 10px;
+
+ 
+`;

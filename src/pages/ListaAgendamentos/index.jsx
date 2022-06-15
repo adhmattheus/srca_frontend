@@ -1,5 +1,5 @@
 import { zonedTimeToUtc } from 'date-fns-tz';
-import { Tabela, Container, Calendario } from './styles'
+import { Tabela, Container, Calendario, ContainerFiltros } from './styles'
 import { useCallback, useEffect, useState } from 'react'
 import api from '../../lib/api'
 import ptBR from 'date-fns/locale/pt-BR';
@@ -59,6 +59,30 @@ export function ListaAgendamentos() {
           />
         </Calendario>
 
+        <ContainerFiltros>
+          <div>
+            <label for="scales">Campus:</label>
+            <input type="checkbox" id="Campus" name="Campus" />
+          </div>
+
+          <div>
+            <label for="scales">Setor:</label>
+            <input type="checkbox" id="Setor" name="Setor" />
+          </div>
+
+          <div>
+            <label for="scales">Atendimento:</label>
+            <input type="checkbox" id="Atendimento" name="Atendimento" />
+          </div>
+
+          <div>
+            <label for="scales">Curso:</label>
+            <input type="checkbox" id="Curso" name="Curso" />
+          </div>
+
+
+
+        </ContainerFiltros>
         {listAgendamentos.length === 0 && <h2>sem agendamentos para este dia</h2>}
 
         <Tabela>
@@ -74,6 +98,8 @@ export function ListaAgendamentos() {
             </tr>
           </thead>
           <tbody>
+
+
 
             {listAgendamentos.map((agendamento, data) => {
 
