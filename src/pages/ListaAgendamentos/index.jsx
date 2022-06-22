@@ -29,14 +29,25 @@ export function ListaAgendamentos() {
             horaAgendamento: (zonedTimeToUtc(agendamento.dataAgendamento, 'America/Sao_Paulo')).toLocaleTimeString()
           }));
           setListAgendamentos(dados)
+
+
+          const campus = dados.filter(agendamento => agendamento.campus === "Juazeiro")
+          console.log(campus)
+
+
+
         })
         .catch(err => {
           console.log(err)
         })
     };
+
     getAgendamentos();
   }, [selectedDay]);
 
+  function checkFilterCampus() {
+    console.log("teste")
+  }
 
   return (
     <>
@@ -51,7 +62,7 @@ export function ListaAgendamentos() {
             locale={ptBR}
             modifiers={{
               available: { dayOfWeek: [1, 2, 3, 4, 5] },
-              disabled: { dayOfWeek: [0, 6] }
+              disabled: { dayOfWeek: [6] }
             }}
             selected={selectedDay}
             onSelect={setSelectedDay}
@@ -62,7 +73,7 @@ export function ListaAgendamentos() {
         <ContainerFiltros>
           <div>
             <label for="scales">Campus:</label>
-            <input type="checkbox" id="Campus" name="Campus" />
+            <input type="checkbox" id="Campus" name="Campus" onChange={checkFilterCampus} />
           </div>
 
           <div>
