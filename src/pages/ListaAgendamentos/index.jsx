@@ -11,6 +11,11 @@ export function ListaAgendamentos() {
 
   const [selectedDay, setSelectedDay] = useState(new Date());
   const [listAgendamentos, setListAgendamentos] = useState([]);
+  const [listAgendamentosAux, setListAgendamentosAux] = useState([]);
+
+  const [checkCampus, setcheckCampus] = useState(false);
+  const [checkSetor, setcheckSetor] = useState(false);
+  const [checkAtendimento, setcheckAtendimento] = useState(false);
 
 
   const handleDateChange = useCallback((dataAgendamento) => {
@@ -29,10 +34,11 @@ export function ListaAgendamentos() {
             horaAgendamento: (zonedTimeToUtc(agendamento.dataAgendamento, 'America/Sao_Paulo')).toLocaleTimeString()
           }));
           setListAgendamentos(dados)
+          setListAgendamentosAux(dados)
 
 
-          const campus = dados.filter(agendamento => agendamento.campus === "Juazeiro")
-          console.log(campus)
+          // const campus = dados.filter(agendamento => agendamento.campus === "Juazeiro")
+          // console.log(campus)
 
 
 
@@ -45,9 +51,28 @@ export function ListaAgendamentos() {
     getAgendamentos();
   }, [selectedDay]);
 
-  function checkFilterCampus() {
-    console.log(listAgendamentos)
+  function checkOrdenaCampus(event) {
+    setcheckCampus(event);
   }
+  function checkOrdenaSetor(event) {
+    setcheckSetor(event);
+  }
+  function checkOrdenaAtendimento(event) {
+    setcheckAtendimento(event);
+  }
+
+  useEffect(() => {
+    if (checkCampus) {
+      console.log(checkCampus)
+    }
+    if (checkSetor) {
+      console.log(checkSetor)
+    }
+    if (checkAtendimento) {
+      console.log(checkAtendimento)
+    }
+  }, [checkCampus, checkSetor, checkAtendimento])
+
 
   return (
 
@@ -76,17 +101,17 @@ export function ListaAgendamentos() {
           <ContainerFiltros>
             <div>
               <label for="scales">Campus:</label>
-              <input type="checkbox" id="Campus" name="Campus" onChange={checkFilterCampus} />
+              <input type="checkbox" id="Campus" name="Campus" checked={checkCampus} onChange={e => checkOrdenaCampus(e.target.checked)} />
             </div>
 
             <div>
               <label for="scales">Setor:</label>
-              <input type="checkbox" id="Setor" name="Setor" />
+              <input type="checkbox" id="Setor" name="Setor" checked={checkSetor} onChange={e => checkOrdenaSetor(e.target.checked)} />
             </div>
 
             <div>
               <label for="scales">Atendimento:</label>
-              <input type="checkbox" id="Atendimento" name="Atendimento" />
+              <input type="checkbox" id="Atendimento" name="Atendimento" checked={checkAtendimento} onChange={e => checkOrdenaAtendimento(e.target.checked)} />
             </div>
 
             <div>
