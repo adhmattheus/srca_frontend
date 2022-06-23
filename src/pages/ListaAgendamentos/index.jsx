@@ -46,92 +46,92 @@ export function ListaAgendamentos() {
   }, [selectedDay]);
 
   function checkFilterCampus() {
-    console.log("teste")
+    console.log(listAgendamentos)
   }
 
   return (
-    <>
-
-      <Container>
-
-        <h2>Lista de Agendamentos</h2>
-
-        <Calendario>
-          <DayPicker
-            mode="single"
-            locale={ptBR}
-            modifiers={{
-              available: { dayOfWeek: [1, 2, 3, 4, 5] },
-              disabled: { dayOfWeek: [6] }
-            }}
-            selected={selectedDay}
-            onSelect={setSelectedDay}
-            onDayClick={handleDateChange}
-          />
-        </Calendario>
-
-        <ContainerFiltros>
-          <div>
-            <label for="scales">Campus:</label>
-            <input type="checkbox" id="Campus" name="Campus" onChange={checkFilterCampus} />
-          </div>
-
-          <div>
-            <label for="scales">Setor:</label>
-            <input type="checkbox" id="Setor" name="Setor" />
-          </div>
-
-          <div>
-            <label for="scales">Atendimento:</label>
-            <input type="checkbox" id="Atendimento" name="Atendimento" />
-          </div>
-
-          <div>
-            <label for="scales">Curso:</label>
-            <input type="checkbox" id="Curso" name="Curso" />
-          </div>
 
 
+    <Container>
 
-        </ContainerFiltros>
-        {listAgendamentos.length === 0 && <h2>sem agendamentos para este dia</h2>}
+      <h2>Lista de Agendamentos</h2>
 
-        <Tabela>
+      <Calendario>
+        <DayPicker
+          mode="single"
+          locale={ptBR}
+          modifiers={{
+            available: { dayOfWeek: [1, 2, 3, 4, 5] },
+            disabled: { dayOfWeek: [6] }
+          }}
+          selected={selectedDay}
+          onSelect={setSelectedDay}
+          onDayClick={handleDateChange}
+        />
 
-          <thead>
-            <tr>
-              <th>Campus</th>
-              <th>Setor</th>
-              <th>Atendimento</th>
-              <th>Data</th>
-              <th>Horário</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
+      </Calendario>
+
+      {listAgendamentos.length === 0 ? <h2>sem agendamentos para este dia</h2> : (
+        <>
+          <ContainerFiltros>
+            <div>
+              <label for="scales">Campus:</label>
+              <input type="checkbox" id="Campus" name="Campus" onChange={checkFilterCampus} />
+            </div>
+
+            <div>
+              <label for="scales">Setor:</label>
+              <input type="checkbox" id="Setor" name="Setor" />
+            </div>
+
+            <div>
+              <label for="scales">Atendimento:</label>
+              <input type="checkbox" id="Atendimento" name="Atendimento" />
+            </div>
+
+            <div>
+              <label for="scales">Curso:</label>
+              <input type="checkbox" id="Curso" name="Curso" />
+            </div>
+          </ContainerFiltros>
 
 
+          <Tabela>
 
-            {listAgendamentos.map((agendamento, data) => {
+            <thead>
+              <tr>
+                <th>Campus</th>
+                <th>Setor</th>
+                <th>Atendimento</th>
+                <th>Data</th>
+                <th>Horário</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
 
-              return (
+              {listAgendamentos.map((agendamento, data) => {
+                return (
+                  <tr key={data}>
+                    <td>{agendamento.campus}</td>
+                    <td>{agendamento.setor}</td>
+                    <td>{agendamento.categoria}</td>
+                    <td>{agendamento.dataAgendamento}</td>
+                    <td>{agendamento.horaAgendamento}</td>
+                    <td>{agendamento.statusAgendamento}</td>
+                  </tr>
+                )
+              })}
+            </tbody>
 
-                <tr key={data}>
-                  <td>{agendamento.campus}</td>
-                  <td>{agendamento.setor}</td>
-                  <td>{agendamento.categoria}</td>
-                  <td>{agendamento.dataAgendamento}</td>
-                  <td>{agendamento.horaAgendamento}</td>
-                  <td>{agendamento.statusAgendamento}</td>
-                </tr>
+          </Tabela>
+        </>
+      )}
 
-              )
-            })}
-          </tbody>
-        </Tabela>
-      </Container>
 
-    </>
+    </Container>
+
+
 
   );
 }
