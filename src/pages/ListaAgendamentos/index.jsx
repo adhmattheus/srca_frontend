@@ -54,6 +54,7 @@ export function ListaAgendamentos() {
   function checkOrdenaCampus(event) {
     setcheckCampus(event);
   }
+  
   function checkOrdenaSetor(event) {
     setcheckSetor(event);
   }
@@ -62,16 +63,9 @@ export function ListaAgendamentos() {
   }
 
   useEffect(() => {
-    if (checkCampus) {
-      console.log(checkCampus)
-    }
-    if (checkSetor) {
-      console.log(checkSetor)
-    }
-    if (checkAtendimento) {
-      console.log(checkAtendimento)
-    }
-  }, [checkCampus, checkSetor, checkAtendimento])
+    console.log(checkCampus)
+   
+  }, [checkCampus])
 
 
   return (
@@ -100,22 +94,22 @@ export function ListaAgendamentos() {
         <>
           <ContainerFiltros>
             <div>
-              <label for="scales">Campus:</label>
+              <label htmlFor="scales">Campus:</label>
               <input type="checkbox" id="Campus" name="Campus" checked={checkCampus} onChange={e => checkOrdenaCampus(e.target.checked)} />
             </div>
 
             <div>
-              <label for="scales">Setor:</label>
+              <label htmlFor="scales">Setor:</label>
               <input type="checkbox" id="Setor" name="Setor" checked={checkSetor} onChange={e => checkOrdenaSetor(e.target.checked)} />
             </div>
 
             <div>
-              <label for="scales">Atendimento:</label>
+              <label htmlFor="scales">Atendimento:</label>
               <input type="checkbox" id="Atendimento" name="Atendimento" checked={checkAtendimento} onChange={e => checkOrdenaAtendimento(e.target.checked)} />
             </div>
 
             <div>
-              <label for="scales">Curso:</label>
+              <label htmlFor="scales">Curso:</label>
               <input type="checkbox" id="Curso" name="Curso" />
             </div>
           </ContainerFiltros>
