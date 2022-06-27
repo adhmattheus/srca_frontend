@@ -54,7 +54,7 @@ export function ListaAgendamentos() {
   function checkOrdenaCampus(event) {
     setcheckCampus(event);
   }
-  
+
   function checkOrdenaSetor(event) {
     setcheckSetor(event);
   }
@@ -63,9 +63,55 @@ export function ListaAgendamentos() {
   }
 
   useEffect(() => {
-    console.log(checkCampus)
-   
+
+    if (checkSetor) {
+      const listAgendamentosOrdemSetor = [...listAgendamentos]
+        .sort((a, b) => a.setor.toLowerCase() > b.setor.toLowerCase() ? 1 : -1)
+
+      setListAgendamentos(listAgendamentosOrdemSetor);
+    } else {
+      setListAgendamentos(listAgendamentosAux)
+    }
+
+    // if (checkCampus && checkSetor && checkAtendimento) {
+    //   const listAgendamentosOrdemCampus = [...listAgendamentos]
+    //     .sort((c, d) => c.campus.toLowerCase() < d.campus.toLowerCase() ? 1 : -1)
+    //     .sort((e, f) => e.setor.toLowerCase() < f.setor.toLowerCase() ? 1 : -1)
+    //     .sort((g, h) => g.categoria.toLowerCase() < h.categoria.toLowerCase() ? 1 : -1)
+
+    //   setListAgendamentos(listAgendamentosOrdemCampus);
+    // } else {
+    //   setListAgendamentos(listAgendamentosAux)
+    // }
+
+  }, [checkSetor])
+
+  useEffect(() => {
+    if (checkCampus) {
+      const listAgendamentosOrdemCampus = [...listAgendamentos]
+        .sort((a, b) => a.campus.toLowerCase() > b.campus.toLowerCase() ? 1 : -1)
+
+      setListAgendamentos(listAgendamentosOrdemCampus);
+    }
+    else {
+      setListAgendamentos(listAgendamentosAux)
+    }
   }, [checkCampus])
+
+  useEffect(() => {
+    if (checkAtendimento) {
+      const listAgendamentosOrdemCampus = [...listAgendamentos]
+        .sort((a, b) => a.categoria.toLowerCase() > b.categoria.toLowerCase() ? 1 : -1)
+
+      setListAgendamentos(listAgendamentosOrdemCampus);
+    }
+    else {
+      setListAgendamentos(listAgendamentosAux)
+    }
+  }, [checkAtendimento])
+
+
+
 
 
   return (
