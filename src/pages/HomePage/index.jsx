@@ -1,8 +1,12 @@
+import { Container, Btn } from './styles'
+
 export function HomePage() {
     return (
-        <div>
-            <button type="submit">Novo agendamento</button>
-            <button type="submit">Lista de Agendamentos</button>
-        </div >
+        <Container>
+        
+                <Btn type="submit">Novo agendamento</Btn>
+                <Btn type="submit">Lista de Agendamentos</Btn>
+            
+        </Container>
     )
 }

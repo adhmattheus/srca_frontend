@@ -22,12 +22,12 @@ export const Calendario = styled.div`
 export const ContentBotao = styled.div`
 
 /* border: 1px solid black; */
-width: 250px;
+  width: 250px;
 
-margin: auto;
-display: flex;
-justify-content: center;
-align-items: space-between;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: space-between;
 
 > button{
   margin-right: 20px; 
