@@ -126,8 +126,8 @@ export function ListaAgendamentos() {
     () => [
       {
         Header: 'Campus',
-        accessor: 'campus',
-        sortType: 'basic'
+        accessor: 'campus'
+      
       },
       {
         Header: 'Setor',
@@ -211,7 +211,7 @@ export function ListaAgendamentos() {
               <input type="checkbox" id="Curso" name="Curso" />
             </div>
           </ContainerFiltros> */}
-
+           
           <Tabela2>
             <table>
               <thead>

@@ -23,7 +23,7 @@ export function Agendamento() {
     },
   };
 
-  const [selectedDay, setSelectedDay] = useState(new Date());
+  const [selectedDay, setSelectedDay] = useState('');
 
   const [agendamento, setAgendamento] = useState({
     atendimento: '',
@@ -45,14 +45,16 @@ export function Agendamento() {
 
   useEffect(() => {
 
-    const data = format(selectedDay, "yyyy-MM-dd");
-    const hora = agendamento.horario;
-    const agendamentoData = `${data}  ${hora}`;
+    if (selectedDay) {
+      const data = format(selectedDay, "yyyy-MM-dd");
+      const hora = agendamento.horario;
+      const agendamentoData = `${data}  ${hora}`;
 
-    setAgendamento({
-      ...agendamento,
-      dataAgendamento: format(new Date(agendamentoData), 'yyyy-MM-dd HH:mm:ss').toString(),
-    });
+      setAgendamento({
+        ...agendamento,
+        dataAgendamento: format(new Date(agendamentoData), 'yyyy-MM-dd HH:mm:ss').toString(),
+      });
+    }
   }, [selectedDay, agendamento.horario])
 
   const onChangeAgendamento = e =>
@@ -81,6 +83,10 @@ export function Agendamento() {
     }
     if (agendamento.campus === "") {
       alert('Selecione o horário')
+      return;
+    }
+    if (agendamento.dataAgendamento === "") {
+      alert('Selecione uma data')
       return;
     }
     await api.post('/agendamentos', {
