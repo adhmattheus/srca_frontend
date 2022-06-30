@@ -13,11 +13,11 @@ export function ListaAgendamentos() {
 
   const [selectedDay, setSelectedDay] = useState(new Date());
   const [listAgendamentos, setListAgendamentos] = useState([]);
-  const [listAgendamentosAux, setListAgendamentosAux] = useState([]);
+  // const [listAgendamentosAux, setListAgendamentosAux] = useState([]);
 
-  const [checkCampus, setcheckCampus] = useState(false);
-  const [checkSetor, setcheckSetor] = useState(false);
-  const [checkAtendimento, setcheckAtendimento] = useState(false);
+  // const [checkCampus, setcheckCampus] = useState(false);
+  // const [checkSetor, setcheckSetor] = useState(false);
+  // const [checkAtendimento, setcheckAtendimento] = useState(false);
 
 
   const handleDateChange = useCallback((dataAgendamento) => {
@@ -126,40 +126,45 @@ export function ListaAgendamentos() {
     () => [
       {
         Header: 'Campus',
-        accessor: 'campus'
+        accessor: 'campus',
+        sortType: 'basic'
       },
       {
         Header: 'Setor',
-        accessor: 'setor'
+        accessor: 'setor',
+        sortType: 'basic'
       },
 
       {
         Header: "Atendimento",
-        accessor: 'categoria'
+        accessor: 'categoria',
+        sortType: 'basic'
       },
       {
         Header: 'Data',
-        accessor: "dataAgendamento"
+        accessor: "dataAgendamento",
+        sortType: 'basic'
       },
       {
         Header: 'Horário',
-        accessor: "horaAgendamento"
+        accessor: "horaAgendamento",
+        sortType: 'basic'
       },
       {
         Header: 'Status',
-        accessor: "statusAgendamento"
+        accessor: "statusAgendamento",
+        sortType: 'basic'
       },
     ],
     []
   )
 
   const {
-    getTableProps,
     getTableBodyProps,
     headerGroups,
     rows,
     prepareRow,
-  } = useTable({ columns, data: listAgendamentos })
+  } = useTable({ columns, data: listAgendamentos }, useSortBy)
 
 
   return (
@@ -213,7 +218,12 @@ export function ListaAgendamentos() {
                 {headerGroups.map(headerGroup => (
                   <tr {...headerGroup.getHeaderGroupProps()}>
                     {headerGroup.headers.map(column => (
-                      <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                      <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                        {column.render('Header')}
+                        <span>
+                          {column.isSorted ? (column.isSortedDesc ? ' ' : ' ') : ''}
+                        </span>
+                      </th>
                     ))}
 
                   </tr>
