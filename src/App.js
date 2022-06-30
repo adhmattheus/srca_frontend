@@ -11,8 +11,8 @@ function App() {
       <GlobalStyle />
       {/* <Header /> */}
       {/* <ListaAgendamentos /> */}
-      <Agendamento />
-      {/* <HomePage /> */}
+      {/* <Agendamento /> */}
+      <HomePage />
 
     </>
 

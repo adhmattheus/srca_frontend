@@ -1,7 +1,8 @@
 export function HomePage() {
     return (
-        <h1>
-           home
-        </h1>
+        <div>
+            <button type="submit">Novo agendamento</button>
+            <button type="submit">Lista de Agendamentos</button>
+        </div >
     )
 }

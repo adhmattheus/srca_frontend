@@ -89,6 +89,7 @@ export function Agendamento() {
       alert('Selecione uma data')
       return;
     }
+    
     await api.post('/agendamentos', {
       estudanteId: '97e67e57-e3fd-41c1-a918-df7acdce9ce3',
       campus: agendamento.campus,
