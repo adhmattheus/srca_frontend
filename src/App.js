@@ -1,14 +1,16 @@
-// import { Agendamento } from './components/pages/Agendamento';
-// import { Header } from './components/Header';
-import { ListaAgendamentos } from './pages/ListaAgendamentos';
-// import { Agendamento } from './pages/Agendamento';
+
+import { Header } from './components/Header';
+import { Agendamento } from './pages/Agendamento';
+import GlobalStyle from './styles/global'
+// import { ListaAgendamentos } from './pages/ListaAgendamentos';
 
 function App() {
   return (
     <>
-      {/* <Header /> */}
-      <ListaAgendamentos />
-      {/* <Agendamento/> */}
+    <GlobalStyle/>
+      <Header />
+      {/* <ListaAgendamentos /> */}
+      <Agendamento/>
     </>
 
   );
