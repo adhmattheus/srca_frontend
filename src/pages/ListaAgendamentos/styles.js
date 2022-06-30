@@ -8,27 +8,6 @@ export const Container = styled.main`
   align-items: center;
 `;
 
-export const Tabela = styled.table`
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 80%;
-
-
-thead tr{
-  background-color: lightblue;
-  text-align: center;
-  font-weight: bold;
-}
-
-th,td {
-  padding: 10px;
-  text-align: center;
-}
-
-tbody tr:nth-child(even) {
-  background-color: #dddddd;
-}
-`;
 
 export const Calendario = styled.aside`
   width: 330px;
@@ -51,7 +30,29 @@ export const ContainerFiltros = styled.main`
   justify-content:space-evenly ;
   border-radius: 15px;
   padding: 10px;
-  margin: 10px;
-
- 
+  margin: 10px; 
 `;
+
+export const Tabela2 = styled.div`
+ table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+
+
+thead tr{
+  background-color: lightblue;
+  text-align: center;
+  font-weight: bold;
+}
+
+th,td {
+  padding: 10px;
+  text-align: center;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #dddddd;
+}
+ }
+`
