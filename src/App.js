@@ -1,22 +1,16 @@
 
 import GlobalStyle from './styles/global'
-// import { Header } from './components/Header';
-import { Agendamento } from './pages/Agendamento';
-import { HomePage } from './pages/HomePage';
-import { ListaAgendamentos } from './pages/ListaAgendamentos';
+
+
+import Rotas from './routes';
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      {/* <Header /> */}
-      {/* <ListaAgendamentos /> */}
-      {/* <Agendamento /> */}
-      <HomePage />
-
+      <Rotas />
     </>
 
   );
 }
-
 export default App;
