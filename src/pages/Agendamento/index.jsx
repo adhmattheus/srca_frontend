@@ -7,8 +7,11 @@ import ptBR from 'date-fns/locale/pt-BR';
 import { format, } from 'date-fns';
 import api from '../../lib/api'
 import Modal from 'react-modal';
+import { useNavigate } from "react-router-dom";
 
 export function Agendamento() {
+
+  const navigate = useNavigate();
 
   const customStyles = {
     content: {
@@ -89,7 +92,7 @@ export function Agendamento() {
       alert('Selecione uma data')
       return;
     }
-    
+
     await api.post('/agendamentos', {
       estudanteId: '97e67e57-e3fd-41c1-a918-df7acdce9ce3',
       campus: agendamento.campus,
@@ -184,7 +187,7 @@ export function Agendamento() {
       <ContentBotao>
 
         <button type="submit" onClick={(Submit)}>Agendar</button>
-        <button type="submit">Cancelar</button>
+        <button type="submit" onClick={() => navigate('/')}>Cancelar</button>
 
         {/* <button type="submit" onClick={(openModal)}>Modal</button> */}
 
