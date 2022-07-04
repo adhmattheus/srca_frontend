@@ -9,6 +9,8 @@ import api from '../../lib/api'
 import Modal from 'react-modal';
 import { useNavigate } from "react-router-dom";
 
+import { v4 as uuidv4 } from 'uuid';
+
 export function Agendamento() {
 
   const navigate = useNavigate();
@@ -36,7 +38,7 @@ export function Agendamento() {
     horario: ''
   });
 
-  const [modalIsOpen, setIsOpen] = useState(true);
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   // function openModal() {
   //   setIsOpen(true);
@@ -106,7 +108,7 @@ export function Agendamento() {
       .catch(console.log('erro'))
   }
 
-  // const protocolNumber = ;
+  const protocolNumber = uuidv4();
 
   return (
     <>
@@ -229,7 +231,7 @@ export function Agendamento() {
       >
         <Container2>
           <h2>Agendamento realizado com sucesso !</h2>
-          <h4>Número do protocolo: </h4>
+          <h4>Número do protocolo:{`${protocolNumber}`} </h4>
           <BtnConfirmar onClick={closeModal}>Confirmar</BtnConfirmar>
         </Container2>
       </Modal>
