@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Container, Agenda, Calendario, ContentBotao } from './styles'
+import { Container, Agenda, Calendario, ContentBotao, Container2, BtnCancelar, BtnAgendar, BtnConfirmar } from './styles'
 import { DayPicker } from 'react-day-picker';
 import { useState, useEffect } from 'react';
 import 'react-day-picker/dist/style.css';
@@ -13,18 +13,18 @@ export function Agendamento() {
 
   const navigate = useNavigate();
 
-  const customStyles = {
-    content: {
-      width: '30%',
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      alignItems: 'center'
-    },
-  };
+  // const customStyles = {
+  //   content: {
+  //     width: '30%',
+  //     top: '50%',
+  //     left: '50%',
+  //     right: 'auto',
+  //     bottom: 'auto',
+  //     marginRight: '-50%',
+  //     transform: 'translate(-50%, -50%)',
+  //     alignItems: 'center'
+  //   },
+  // };
 
   const [selectedDay, setSelectedDay] = useState('');
 
@@ -36,7 +36,7 @@ export function Agendamento() {
     horario: ''
   });
 
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalIsOpen, setIsOpen] = useState(true);
 
   // function openModal() {
   //   setIsOpen(true);
@@ -105,6 +105,8 @@ export function Agendamento() {
       })
       .catch(console.log('erro'))
   }
+
+  // const protocolNumber = ;
 
   return (
     <>
@@ -186,24 +188,52 @@ export function Agendamento() {
 
       <ContentBotao>
 
-        <button type="submit" onClick={(Submit)}>Agendar</button>
-        <button type="submit" onClick={() => navigate('/')}>Cancelar</button>
+        <BtnAgendar type="submit" onClick={(Submit)}>Agendar</BtnAgendar>
+        <BtnCancelar type="submit" onClick={() => navigate('/')}>Cancelar</BtnCancelar>
 
         {/* <button type="submit" onClick={(openModal)}>Modal</button> */}
+
 
       </ContentBotao>
 
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        style={customStyles}
+        style={
+          {
+
+            overlay: {
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(255, 255, 255, 0.75)'
+            },
+            content: {
+              width: '35%',
+              top: '50%',
+              left: '50%',
+              right: 'auto',
+              bottom: 'auto',
+              marginRight: '-50%',
+              transform: 'translate(-50%, -50%)',
+              alignItems: 'center',
+              background: 'rgba(214, 240, 255, 0.466)',
+            }
+          }
+        }
         shouldCloseOnEsc={false}
         shouldCloseOnOverlayClick={false}
         ariaHideApp={false}
       >
-        <h2>Agendamento realizado com sucesso!</h2>
-        <button onClick={closeModal}>Confirmar</button>
+        <Container2>
+          <h2>Agendamento realizado com sucesso !</h2>
+          <h4>Número do protocolo: </h4>
+          <BtnConfirmar onClick={closeModal}>Confirmar</BtnConfirmar>
+        </Container2>
       </Modal>
+
 
     </>
   )
