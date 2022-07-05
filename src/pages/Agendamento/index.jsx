@@ -115,43 +115,98 @@ export function Agendamento() {
       <Container>
 
         <Agenda>
-          <h1>Faça seu agendamento</h1>
+          <h1>Faça seu agendamento</h1><br></br><br></br>
 
           <form onSubmit={Submit}>
+
             <label>
-              Atendimento:
-              <select name="atendimento" value={agendamento.atendimento} onChange={onChangeAgendamento}>
+              Nome:
+              <input type="text" name="input" value="Digite aqui" />
+            </label >
+            <br /><br />
+
+
+            <label>
+              Curso:
+              <select name="curso" >
                 <option value="" disabled hidden>Selecione</option>
-                <option value="Matrícula">Matrícula</option>
-                <option value="Entrega de diploma">Entrega de diploma</option>
+                <option value="Proae">Administração</option>
+                <option value="SRCA">Antropologia</option>
+                <option value="SRCA">Arqueologia e Preservação Patrimonial</option>
+                <option value="SRCA">Artes Visuais</option>
+                <option value="SRCA">Ciência da Computação</option>
+                <option value="SRCA">Ciências Biológicas</option>
+                <option value="SRCA">Ciências da Natureza</option>
+                <option value="SRCA">Ciências Sociais (Bacharelado)</option>
+                <option value="SRCA">Ciências Sociais (Licenciatura)</option>
+                <option value="SRCA">Ecologia</option>
+                <option value="SRCA">Educação Física</option>
+                <option value="SRCA">Enfermagem</option>
+                <option value="SRCA">Engenharia Agrícola e Ambiental</option>
+                <option value="SRCA">Engenharia Agronômica</option>
+                <option value="SRCA">Engenharia Civil</option>
+                <option value="SRCA">Engenharia da Computação</option>
+                <option value="SRCA">Engenharia de Produção</option>
+                <option value="SRCA">Engenharia de Produção</option>
+                <option value="SRCA">Engenharia Elétrica</option>
+                <option value="SRCA">Engenharia Mecânica</option>
+                <option value="SRCA">Farmácia</option>
+                <option value="SRCA">Geografia</option>
+                <option value="SRCA">Medicina</option>
+                <option value="SRCA">Medicina Veterinária</option>
+                <option value="SRCA">Psicologia</option>
+                <option value="SRCA">Química</option>
+                <option value="SRCA">Zootecnia</option>
 
               </select>
               <br /><br />
             </label>
 
-            <label>
-              Setor:
-              <select name="setor" value={agendamento.setor} onChange={onChangeAgendamento}>
-                <option value="" disabled hidden>Selecione</option>
-                <option value="Proae">Proae</option>
-                <option value="SRCA">SRCA</option>
 
-              </select>
-              <br /><br />
-            </label>
 
             <label>
               Campus:
               <select name="campus" value={agendamento.campus} onChange={onChangeAgendamento}>
                 <option value="" disabled hidden>Selecione</option>
-                <option value="Petrolina">Petrolina</option>
+                <option value="Petrolina">Petrolina </option>
+                <option value="Petrolina Ciências Agrárias">Petrolina Ciências Agrárias</option>
                 <option value="Juazeiro">Juazeiro</option>
+                <option value="Serra da Capivara">Serra da Capivara</option>
+                <option value="Senhor do Bonfim">Senhor do Bonfim</option>
                 <option value="Paulo Afonso">Paulo Afonso</option>
+                <option value="Salgueiro">Salgueiro</option>
+
 
               </select>
             </label>
             <br /><br />
             <label>
+
+              <label>
+                Setor:
+                <select name="setor" value={agendamento.setor} onChange={onChangeAgendamento}>
+                  <option value="" disabled hidden>Selecione</option>
+                  <option value="Proae">Proae</option>
+                  <option value="SRCA">SRCA</option>
+
+                </select>
+                <br /><br />
+              </label>
+
+              <label>
+                Atendimento:
+                <select name="atendimento" value={agendamento.atendimento} onChange={onChangeAgendamento}>
+                  <option value="" disabled hidden>Selecione</option>
+                  <option value="Matrícula">Matrícula</option>
+                  <option value="Entrega de diploma">Entrega de diploma</option>
+
+                </select>
+                <br /><br />
+              </label>
+
+
+
+
 
               Horário:
               <select name="horario" value={agendamento.horario} onChange={onChangeAgendamento}>
