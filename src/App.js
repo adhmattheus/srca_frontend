@@ -1,15 +1,16 @@
-// import { Agendamento } from './components/pages/Agendamento';
-import { Header } from './components/Header';
-import { ListaAgendamentos } from './components/pages/ListaAgendamentos';
+
+import GlobalStyle from './styles/global'
+
+
+import Rotas from './routes';
 
 function App() {
   return (
     <>
-      {/* <Header /> */}
-      <ListaAgendamentos />
+      <GlobalStyle />
+      <Rotas />
     </>
 
   );
 }
-
 export default App;
