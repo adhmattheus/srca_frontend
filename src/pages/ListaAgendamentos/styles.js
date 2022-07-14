@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.main`
   width: 100vw;
@@ -8,16 +8,15 @@ export const Container = styled.main`
   align-items: center;
 `;
 
-
 export const Calendario = styled.aside`
   width: 330px;
-  
-  .Daypicker{
+
+  .Daypicker {
     background: lightblue;
     border-radius: 10px;
   }
 
-  .DayPicker-Day--disabled{
+  .DayPicker-Day--disabled {
     color: red;
   }
 `;
@@ -27,32 +26,32 @@ export const ContainerFiltros = styled.main`
   width: 40%;
   display: flex;
   align-items: center;
-  justify-content:space-evenly ;
+  justify-content: space-evenly;
   border-radius: 15px;
   padding: 10px;
-  margin: 10px; 
+  margin: 10px;
 `;
 
 export const Tabela2 = styled.div`
- table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
 
+    thead tr {
+      background-color: lightblue;
+      text-align: center;
+      font-weight: bold;
+    }
 
-thead tr{
-  background-color: lightblue;
-  text-align: center;
-  font-weight: bold;
-}
+    th,
+    td {
+      padding: 10px;
+      text-align: center;
+    }
 
-th,td {
-  padding: 10px;
-  text-align: center;
-}
-
-tbody tr:nth-child(even) {
-  background-color: #dddddd;
-}
- }
-`
+    tbody tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  }
+`;

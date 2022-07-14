@@ -4,6 +4,7 @@ export default createGlobalStyle`
 *{
     margin: 0;
     padding: 0;
+    background-color: #E4F2FF;
     outline: 0;
 }
 
