@@ -2,11 +2,13 @@ import { Container } from "./styles";
 import { useNavigate } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
 import { useState } from "react";
+import Modal from "react-modal";
 import * as Yup from "yup";
 
 
 
 export function Cadastro() {
+
   const navigate = useNavigate();
 
   const [aluno, setAluno] = useState({
@@ -17,6 +19,12 @@ export function Cadastro() {
     senha: "",
   });
 
+  const [modalIsOpen, setIsOpen] = useState(true);
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   const onChangeAluno = (e) =>
     setAluno({ ...aluno, [e.target.name]: e.target.value });
 
@@ -25,7 +33,7 @@ export function Cadastro() {
 
 
     e.preventDefault();
-   
+
     let schema = Yup.object().shape({
       nome: Yup.string().required("insira o seu nome"),
       email: Yup.string().required("insira o seu email").email("email institucional"),
@@ -37,7 +45,7 @@ export function Cadastro() {
       await schema.validate(aluno, { abortEarly: false })
 
 
-      
+
     } catch (err) {
       const validationsErrors = {};
 
@@ -103,6 +111,31 @@ export function Cadastro() {
           Voltar para o login
         </a>
       </form>
+
+      <Modal
+        isOpen={modalIsOpen}
+        style={{
+          overlay: {
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(255, 255, 255, 0.37)",
+          },
+          content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+          },
+        }
+        } >
+        <h2>Seu cadastro foi realizado com sucesso !</h2>
+        <button onClick={closeModal}>Confirmar</button>
+      </Modal>
     </Container>
   );
 }

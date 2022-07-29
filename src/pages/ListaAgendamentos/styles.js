@@ -11,14 +11,14 @@ export const Container = styled.main`
 export const Calendario = styled.aside`
   width: 330px;
 
-  .Daypicker {
+  /* .Daypicker {
     background: lightblue;
     border-radius: 10px;
   }
 
   .DayPicker-Day--disabled {
     color: red;
-  }
+  } */
 `;
 
 export const ContainerFiltros = styled.main`

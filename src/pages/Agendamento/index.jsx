@@ -267,13 +267,14 @@ export function Agendamento() {
             alignItems: "center",
             background: "rgba(214, 240, 255, 0.466)",
           },
-        }}
+        }
+        }
         shouldCloseOnEsc={false}
         shouldCloseOnOverlayClick={false}
         ariaHideApp={false}
       >
         <Container2>
-          <h2>Agendamento realizado com sucesso !</h2>
+          <h2>Agendamento realizado com sucesso!</h2>
           <h4>Número do protocolo:{`${protocolNumber}`} </h4>
           <BtnConfirmar onClick={closeModal}>Confirmar</BtnConfirmar>
         </Container2>
