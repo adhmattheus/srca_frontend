@@ -26,10 +26,9 @@ export const Container = styled.div`
       color: black;
       margin-bottom: 5px;
 
-      &::placeholder{
+      &::placeholder {
         color: #666360;
       }
-
 
       & + input {
         margin-top: 8px;
@@ -38,7 +37,7 @@ export const Container = styled.div`
 
     button {
       background-clip: padding-box;
-      background-color: #0cb1d6;
+      background-color: lightblue;
       border: 1px solid transparent;
       border-radius: 0.25rem;
       box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
@@ -50,7 +49,7 @@ export const Container = styled.div`
       font-weight: 600;
       justify-content: center;
       line-height: 1.25;
-      margin: 10px;
+      margin: 20px;
       min-height: 3rem;
       padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
       position: relative;

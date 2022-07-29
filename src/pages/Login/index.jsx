@@ -1,5 +1,5 @@
 import { Container } from "./styles";
-import { FiLogIn, FiMail } from "react-icons/fi";
+import { FiLogIn } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
 

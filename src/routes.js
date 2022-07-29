@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 import { Agendamento } from './pages/Agendamento';
-import { Cadastro } from './pages/CadastroPage';
-import { HomePage } from './pages/HomePage';
+import { Cadastro } from './pages/Cadastro';
+import { HomePage } from './pages/Home';
 import { ListaAgendamentos } from './pages/ListaAgendamentos';
-import { Login } from './pages/LoginPage';
+import { Login } from './pages/Login';
 
 const Rotas = () => (
 

@@ -10,16 +10,16 @@ import * as Yup from "yup";
 export function Cadastro() {
 
   const navigate = useNavigate();
-
+  const [modalIsOpen, setIsOpen] = useState(false);
   const [aluno, setAluno] = useState({
     nome: "",
     email: "",
     cpf: "",
     curso: "",
     senha: "",
-  });
-
-  const [modalIsOpen, setIsOpen] = useState(true);
+    status: "Ativo"
+  }
+  );
 
   function closeModal() {
     setIsOpen(false);
@@ -28,10 +28,7 @@ export function Cadastro() {
   const onChangeAluno = (e) =>
     setAluno({ ...aluno, [e.target.name]: e.target.value });
 
-
   const Submit = async (e) => {
-
-
     e.preventDefault();
 
     let schema = Yup.object().shape({
@@ -39,31 +36,22 @@ export function Cadastro() {
       email: Yup.string().required("insira o seu email").email("email institucional"),
       cpf: Yup.string().required("insira o seu cpf "),
       curso: Yup.string().required("insira seu curso"),
-      senha: Yup.string().required("insira uma senha").min(6, "mínimo de 6 dígitos válidos"),
+      senha: Yup.string().min(6, "mínimo de 6 dígitos válidos"),
     });
     try {
-      await schema.validate(aluno, { abortEarly: false })
+      await schema.validate(aluno, { abortEarly: false });
 
-
+      console.log(aluno)
+      setIsOpen(true);
 
     } catch (err) {
       const validationsErrors = {};
-
       err.inner.forEach(error => {
         validationsErrors[error.path] = error.message;
       });
-
       console.log(validationsErrors);
     }
-
-
-
   };
-
-  // async function validate() {
-
-
-  // }
 
   return (
     <Container>
@@ -97,10 +85,11 @@ export function Cadastro() {
 
         <input
           type="password"
-          id="pass"
-          name="password"
-          autoComplete="current-password"
+          name="senha"
+          autoComplete="current-senha"
           placeholder="insira sua senha"
+          value={aluno.senha}
+          onChange={onChangeAluno}
         ></input>
         <button type="submit" onClick={Submit}>
           Cadastrar
@@ -114,6 +103,7 @@ export function Cadastro() {
 
       <Modal
         isOpen={modalIsOpen}
+        onRequestClose={closeModal}
         style={{
           overlay: {
             position: "fixed",
@@ -132,7 +122,11 @@ export function Cadastro() {
             transform: 'translate(-50%, -50%)',
           },
         }
-        } >
+        }
+        shouldCloseOnEsc={false}
+        shouldCloseOnOverlayClick={false}
+        ariaHideApp={false}
+      >
         <h2>Seu cadastro foi realizado com sucesso !</h2>
         <button onClick={closeModal}>Confirmar</button>
       </Modal>

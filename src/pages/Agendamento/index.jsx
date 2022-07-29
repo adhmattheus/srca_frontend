@@ -83,11 +83,6 @@ export function Agendamento() {
   const onChangeAgendamento = (e) =>
     setAgendamento({ ...agendamento, [e.target.name]: e.target.value });
 
-  // const schema = Yup.object().shape({
-  //   antendimento: Yup.string().required('selecione o tipo do atendimento'),
-  //   setor: Yup.string().required('selecione o setor'),
-  //   campus: Yup.string().required('selecione campus'),
-  // });
 
   const Submit = async (e) => {
     e.preventDefault();
